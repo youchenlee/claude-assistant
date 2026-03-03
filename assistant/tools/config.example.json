@@ -1,0 +1,15 @@
+{
+  "telegram_token": "",
+  "telegram_chat_id": "",
+  "openai_api_key": "",
+  "assistant_dir": "assistant",
+  "session_timeout_minutes": 30,
+  "default_model": "sonnet",
+  "budget_usd": {
+    "sonnet": 2.0,
+    "opus": 5.0
+  },
+  "agent_name": "",
+  "memory_db_path": "",
+  "memory_scopes": []
+}

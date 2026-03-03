@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.{{AGENT_NAME}}.telegram</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>{{PYTHON_PATH}}</string>
+        <string>{{TOOLS_DIR}}/telegram-bot.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>{{KB_DIR}}</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>ASSISTANT_TELEGRAM_TOKEN</key>
+        <string>{{TELEGRAM_TOKEN}}</string>
+        <key>ASSISTANT_ALLOWED_CHATS</key>
+        <string>{{CHAT_ID}}</string>
+        <key>AGENT_DIR</key>
+        <string>{{AGENT_NAME}}</string>
+        <key>OPENAI_API_KEY</key>
+        <string>{{OPENAI_API_KEY}}</string>
+        <key>PATH</key>
+        <string>{{HOME}}/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+    <key>KeepAlive</key>
+    <true/>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>{{TOOLS_DIR}}/logs/launchd-telegram.log</string>
+    <key>StandardErrorPath</key>
+    <string>{{TOOLS_DIR}}/logs/launchd-telegram-err.log</string>
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+</dict>
+</plist>
