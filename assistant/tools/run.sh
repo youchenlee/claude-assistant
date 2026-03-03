@@ -75,6 +75,10 @@ fi
 
 # Replace hardcoded "assistant/" in prompts with actual agent directory name
 AGENT_BASENAME=$(basename "$AGENT_DIR")
+if [ -z "$AGENT_BASENAME" ]; then
+  echo "Error: could not determine agent directory name" >&2
+  exit 1
+fi
 PROMPT=$(sed "s|assistant/|${AGENT_BASENAME}/|g" "$PROMPT_FILE")
 
 echo "=== Automated task: $TASK_NAME ===" | tee "$LOG_FILE"

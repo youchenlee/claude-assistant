@@ -36,11 +36,11 @@ AGENT_NAME = os.path.basename(AGENT_DIR)
 
 # Load agent-specific config (overrides primary config for lite agents)
 _agent_cfg_path = os.path.join(KB_DIR, AGENT_DIR, "config.json")
-if _agent_cfg_path != os.path.join(TOOLS_DIR, "config.json") and os.path.isfile(_agent_cfg_path):
+if _agent_cfg_path != os.path.join(TOOLS_DIR, "config.json"):
     try:
         with open(_agent_cfg_path) as _f:
             _cfg.update(json.load(_f))
-    except (json.JSONDecodeError, OSError):
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
         pass
 
 BOT_TOKEN = os.environ.get("ASSISTANT_TELEGRAM_TOKEN") or _cfg.get("telegram_token", "")
