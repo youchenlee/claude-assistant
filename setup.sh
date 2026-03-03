@@ -45,11 +45,13 @@ TOOLS_PATH="$AGENT_PATH/tools"
 echo ""
 read -rp "Your name (used in SOUL.md and MEMORY.md) []: " user_name
 if [ -n "$user_name" ]; then
+    # Escape sed metacharacters in user name
+    escaped_name=$(printf '%s\n' "$user_name" | sed 's/[&/\]/\\&/g')
     # Replace {{USER}} placeholder in identity files
     for f in "$AGENT_PATH/SOUL.md" "$AGENT_PATH/MEMORY.md"; do
         if [ -f "$f" ]; then
-            sed -i '' "s/{{USER}}/${user_name}/g" "$f" 2>/dev/null || \
-            sed -i "s/{{USER}}/${user_name}/g" "$f" 2>/dev/null
+            sed -i '' "s/{{USER}}/${escaped_name}/g" "$f" 2>/dev/null || \
+            sed -i "s/{{USER}}/${escaped_name}/g" "$f" 2>/dev/null
         fi
     done
     ok "Personalized identity files for $user_name"

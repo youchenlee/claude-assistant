@@ -24,10 +24,10 @@ Lives under `agents/<name>/`. Minimal structure:
 
 ```
 agents/language-coach/
-  SOUL.md          -- personality
-  STYLE.md         -- communication style
-  MEMORY.md        -- working memory
-  config.json      -- telegram token + chat_id
+  SOUL.md               -- personality
+  STYLE.md              -- communication style
+  MEMORY.md             -- working memory
+  config.example.json   -- telegram token + chat_id (copy to config.json)
 ```
 
 No tasks/, activity-log/, or tools/ directories. Lite agents use the primary agent's `telegram-bot.py` and only need a separate Telegram bot token.

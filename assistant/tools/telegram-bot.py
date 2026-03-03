@@ -34,6 +34,15 @@ AGENT_DIR = os.environ.get("AGENT_DIR", _cfg.get("assistant_dir", "assistant"))
 KB_DIR = os.path.abspath(os.path.join(TOOLS_DIR, "..", ".."))
 AGENT_NAME = os.path.basename(AGENT_DIR)
 
+# Load agent-specific config (overrides primary config for lite agents)
+_agent_cfg_path = os.path.join(KB_DIR, AGENT_DIR, "config.json")
+if _agent_cfg_path != os.path.join(TOOLS_DIR, "config.json") and os.path.isfile(_agent_cfg_path):
+    try:
+        with open(_agent_cfg_path) as _f:
+            _cfg.update(json.load(_f))
+    except (json.JSONDecodeError, OSError):
+        pass
+
 BOT_TOKEN = os.environ.get("ASSISTANT_TELEGRAM_TOKEN") or _cfg.get("telegram_token", "")
 _chat_env = os.environ.get("ASSISTANT_ALLOWED_CHATS", "")
 ALLOWED_CHATS = (set(c.strip() for c in _chat_env.split(",") if c.strip()) if _chat_env

@@ -73,7 +73,9 @@ if [[ "$CURRENT_LOCK" != "${HOSTNAME}"* ]]; then
   exit 0
 fi
 
-PROMPT=$(cat "$PROMPT_FILE")
+# Replace hardcoded "assistant/" in prompts with actual agent directory name
+AGENT_BASENAME=$(basename "$AGENT_DIR")
+PROMPT=$(sed "s|assistant/|${AGENT_BASENAME}/|g" "$PROMPT_FILE")
 
 echo "=== Automated task: $TASK_NAME ===" | tee "$LOG_FILE"
 echo "Time: $(date '+%Y-%m-%d %H:%M:%S')" | tee -a "$LOG_FILE"

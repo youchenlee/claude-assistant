@@ -605,7 +605,8 @@ class MemoryStore:
             if scope:
                 if scope not in VALID_SCOPES:
                     return 0
-                return len(self.table.search().where(f"scope = '{scope}'").to_list())
+                safe_scope = scope.replace("'", "")
+                return len(self.table.search().where(f"scope = '{safe_scope}'").to_list())
             return self.table.count_rows()
         except Exception:
             return 0

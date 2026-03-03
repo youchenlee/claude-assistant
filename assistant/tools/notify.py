@@ -132,7 +132,7 @@ def main():
         sys.exit(1)
 
     if not ALLOWED_CHATS:
-        print("Error: ASSISTANT_ALLOWED_CHATS not set", file=sys.stderr)
+        print("Error: no chat IDs configured. Set ASSISTANT_ALLOWED_CHATS env var or telegram_chat_id in config.json", file=sys.stderr)
         sys.exit(1)
 
     # Dedup check: skip identical content within 10-minute window
